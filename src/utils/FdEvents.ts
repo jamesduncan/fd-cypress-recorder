@@ -124,19 +124,27 @@ export interface Template {
 }
 
 export const UNIQUE_SELECTOR_OPTIONS = {
-    selectorTypes: ['ID', 'Tag', 'NthChild'],
+    selectorTypes: ['Attributes', 'ID', 'Class', 'Tag', 'NthChild'],
+    attributes: ['data-cy', 'name'],
+    ignore: false
 };
 
 export const UNIQUE_SELECTOR_OPTIONS_WITHOUT_ID = {
-    selectorTypes: ['Tag', 'NthChild'],
+    selectorTypes: ['Attributes', 'Class', 'Tag', 'NthChild'],
+    attributes: ['data-cy', 'name'],
+    ignore: false
 };
 
 export const UNIQUE_ATTR_SELECTOR_OPTIONS = {
-    selectorTypes: ['Attributes', 'ID', 'Tag', 'NthChild'],
+    selectorTypes: ['Attributes', 'ID', 'Class', 'Tag', 'NthChild'],
+    attributes: ['data-cy', 'name'],
+    ignore: false
 };
 
 export const UNIQUE_ATTR_SELECTOR_OPTIONS_WITHOUT_ID = {
-    selectorTypes: ['Attributes', 'Tag', 'NthChild'],
+    selectorTypes: ['Attributes', 'Class', 'Tag', 'NthChild'],
+    attributes: ['data-cy', 'name'],
+    ignore: false
 };
 
 export interface Options {

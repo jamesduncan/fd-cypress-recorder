@@ -59,7 +59,7 @@
         "react-dom": "^16.13.0",
         "resub": "^1.2.2",
         "styled-components": "^4.4.1",
-        "unique-selector": "^0.4.1"
+        "unique-selector": "github:jamesduncan/unique-selector#master"
     },
     "jest": {
         "transform": {

@@ -34,6 +34,11 @@ let subscriptionToken = 0;
 const style: any = document.createElement('style');
 const css = `a:hover, button:hover {
     background-color: rgba(73, 164, 162, 0.5) !important;
+}
+.fd-cypress-chrome-extension {
+    position: absolute;
+    z-index: 1000000;
+    top: 0;
 }`;
 if (style.styleSheet) {
     style.styleSheet.cssText = css;
@@ -113,12 +118,31 @@ function clickListener(e: Event) {
 }
 
 /**
+ * Reverse lookup the event.target to discover if it was an HTMLAnchorElement that was hovered
+ * @param target: HTMLElement
+ * @param originalTarget: HTMLElement
+ * @returns {HTMLElement}
+ */
+function parseEventTarget(target: HTMLElement, originalTarget: HTMLElement): HTMLElement {
+    if ((target as HTMLAnchorElement).hasAttribute('href')) {
+        return target;
+    } else {
+        if (target.parentElement) {
+            return parseEventTarget(target.parentElement as HTMLElement, originalTarget as HTMLElement);
+        } else {
+            return originalTarget;
+        }
+    }
+}
+
+/**
  * Sets the current hovered element.
  * @param e MouseEvent
  */
 function mouseOverListener(e: MouseEvent) {
     if (!contextMenu) {
-        hoveredElement = e.target as HTMLElement;
+        let itemHovered = parseEventTarget(e.target as HTMLElement, e.target as HTMLElement);
+        hoveredElement = itemHovered as HTMLElement;
     }
 }
 
